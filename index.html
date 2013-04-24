@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Node Streams</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Jacob Swartwood">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<link rel="stylesheet" href="css/icons.css">
+
+		<script type="text/javascript">
+		  var RevealDeckSettings = {themeFont:"quicksand", themeColor:"sky-blue", transition:"linear"};
+		</script>
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<p> <br> </p>
+					<h2> <br> </h2>
+					<h2>Jacob Swartwood</h2>
+					<p> <br> </p>
+					<p> <br> </p>
+					<p>Pittsburgh Node.js Meetup 2013</p>
+				</section>
+				<section>
+					<p> <br> </p>
+					<p> <br> </p>
+					<p> <br> </p>
+					<h2>|</h2>
+					<p> <br> </p>
+					<p>Unix Pipe</p>
+				</section>
+				<section>
+					<p> <br> </p>
+					<p> <br> </p>
+					<p> <br> </p>
+					<h2>Usage</h2>
+					<pre><code class="shell">cat results.txt | grep "success" | wc -l</code></pre>
+					<p><em>Count lines that match "success" from results.txt</em></p>
+				</section>
+				<section>
+					<p><img src="img/doug_mcilroy.jpg"/></p>
+					<h2>Douglas McIlroy</h2>
+				</section>
+				<section>
+					<p> <br> </p>
+					<p> <br> </p>
+					<h3>Doug's Unix Philosophy</h3>
+					<ul>
+						<li>Write programs that do one thing well
+						<li>Write programs that work together
+						<li>Write programs that handle text streams,
+							<br>because that is a universal interface
+					</ul>
+				</section>
+				<section>
+					<p> <br> </p>
+					<p> <br> </p>
+					<q>
+						We should have some ways of coupling programs
+						like garden hose--screw in another segment
+						when it becomes necessary to massage data in
+						another way. This is the way of IO also.
+					</q>
+					<p> <br> </p>
+					<p> - <a href="http://cm.bell-labs.com/who/dmr/mdmpipe.pdf">MD McIlroy 10/11/64</a></p>
+				</section>
+				<section>
+					<p> <br> </p>
+					<p> <br> </p>
+					<p> <br> </p>
+					<h1>Node.js Streams</h1>
+				</section>
+				<section>
+					<p> <br> </p>
+					<p> <br> </p>
+					<h2>Streams 1</h2>
+					<ul>
+						<li>Chunky (event-based)
+						<li>Clunky (boilerplate)
+						<li>Clumsy (pause/resume)
+					</ul>
+				</section>
+				<section>
+					<p> <br> </p>
+					<p> <br> </p>
+					<h2>Streams 2!!!</h2>
+					<ul>
+						<li>Direct (methods)
+						<li>Easy (inheritence)
+						<li>Stable (buffers)
+					</ul>
+				</section>
+				<section>
+					<p> <br> </p>
+					<p> <br> </p>
+					<p> <br> </p>
+					<p> <br> </p>
+					<h2>Stream Classes</h2>
+				</section>
+				<section>
+					<p> <br> </p>
+					<h2><small>stream.</small>Readable</h2>
+					<p> <br> </p>
+					<h6>Author:</h6>
+					<p>._read(), .push()</p>
+					<p> <br> </p>
+					<h6>Consumer:</h6>
+					<p>.read()</p>
+				</section>
+				<section>
+					<p> <br> </p>
+					<h2><small>stream.</small>Writable</h2>
+					<p> <br> </p>
+					<h6>Author:</h6>
+					<p>._write()</p>
+					<p> <br> </p>
+					<h6>Consumer:</h6>
+					<p>.write()</p>
+				</section>
+				<section>
+					<p> <br> </p>
+					<h2><small>stream.</small>Duplex</h2>
+					<p> <br> </p>
+					<h6>Author:</h6>
+					<p>._read(), .push(), ._write()</p>
+					<p> <br> </p>
+					<h6>Consumer:</h6>
+					<p>.read(), .write()</p>
+				</section>
+				<section>
+					<p> <br> </p>
+					<h2><small>stream.</small>Transform</h2>
+					<p> <br> </p>
+					<h6>Author:</h6>
+					<p>._transform(), .push()</p>
+					<p> <br> </p>
+					<h6>Consumer:</h6>
+					<p>.read(), .write()</p>
+				</section>
+				<section>
+					<p> <br> </p>
+					<h2><small>stream.</small>Passthrough</h2>
+					<p> <br> </p>
+					<h6>Author:</h6>
+					<p>er... well... um</p>
+					<p> <br> </p>
+					<h6>Consumer:</h6>
+					<p>take a nap</p>
+				</section>
+				<section>
+					<p> <br> </p>
+					<p> <br> </p>
+					<p> <br> </p>
+					<p>...and of course</p>
+					<p> <br> </p>
+					<p>.pipe()</p>
+				</section>
+				<section>
+					<p> <br> </p>
+					<p> <br> </p>
+					<p> <br> </p>
+					<h2>How?</h2>
+					<p><a href="https://github.com/jswartwood/linefeed">linefeed</a></p>
+					<p><a href="https://github.com/jswartwood/gitfiles">gitfiles</a></p>
+				</section>
+				<section>
+					<h2>Why?</h2>
+					<p>Do stuff to stuff while stuff</p>
+					<p>Command line fu</p>
+					<p>Latency!!!</p>
+					<p>Efficiency!!!</p>
+					<p>Huge files</p>
+					<p>Parser/processor</p>
+					<p>Stupid slow thing!</p>
+					<p>Stupid cluttered thing!</p>
+					<p><a href="https://github.com/jswartwood/git-files-server">Demo!</a></p>
+				</section>
+				<section>
+					<h2> <br> </h2>
+					<h2>Jacob Swartwood</h2>
+					<p> <br> </p>
+					<p> <br> </p>
+					<p><span class="icon">t</span> <a href="https://twitter.com/jswartwood">jswartwood</a></p>
+					<p> <br> </p>
+					<p><span class="icon">g</span> <a href="https://github.com/jswartwood">jswartwood</a></p>
+				</section>
+
+			</div>
+
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+		</script>
+
+	</body>
+</html>
